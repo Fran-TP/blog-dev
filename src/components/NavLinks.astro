@@ -1,0 +1,20 @@
+---
+const LINKS = [
+  { href: '/', name: 'Home' },
+  { href: '/about', name: 'About' },
+  { href: '/blog', name: 'Blog' },
+  { href: '/contact', name: 'Contact' },
+]
+---
+
+<ul class='flex gap-4'>
+  {
+    LINKS.map(link => {
+      return (
+        <li>
+          <a href={link.href}>{link.name}</a>
+        </li>
+      )
+    })
+  }
+</ul>
