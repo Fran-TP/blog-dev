@@ -1,6 +1,5 @@
 ---
-import Nav from '@components/Nav.astro'
-import '@styles/global.css'
+import MainLayout from '@layouts/MainLayout.astro'
 
 interface Props {
   title: string
@@ -9,19 +8,6 @@ interface Props {
 const { title } = Astro.props
 ---
 
-<!doctype html>
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='generator' content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body class='h-dvh w-full bg-slate-900 text-white'>
-    <header>
-      <Nav />
-    </header>
-    <slot />
-  </body>
-</html>
+<MainLayout title={title}>
+  <slot />
+</MainLayout>
