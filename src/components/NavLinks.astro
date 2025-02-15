@@ -3,18 +3,46 @@ const LINKS = [
   { href: '/', name: 'Home' },
   { href: '/about', name: 'About' },
   { href: '/blog', name: 'Blog' },
-  { href: '/contact', name: 'Contact' },
 ]
+
+const { pathname } = Astro.url
 ---
 
-<ul class='flex gap-4'>
+<ul class='flex gap-1'>
   {
     LINKS.map(link => {
       return (
-        <li>
-          <a href={link.href}>{link.name}</a>
+        <li class='px-1 py-1 flex-1 text-center'>
+          <a
+            data-link={link.href}
+            href={link.href}
+            class:list={[
+              {
+                'text-blue-500': pathname === link.href,
+              },
+              'hover:text-blue-500',
+            ]}
+          >
+            <span>{link.name}</span>
+          </a>
         </li>
       )
     })
   }
 </ul>
+
+<script type='module'>
+  document.addEventListener('astro:page-load', () => {
+    const links = document.querySelectorAll('a[data-link]')
+
+    links.forEach(link => {
+      link.addEventListener('click', event => {
+        const href = link.dataset.link
+
+        if (href === globalThis.location.pathname) {
+          event.preventDefault()
+        }
+      })
+    })
+  })
+</script>
