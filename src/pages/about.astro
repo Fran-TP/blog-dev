@@ -9,6 +9,8 @@ const identity = {
 }
 
 const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
+
+const skillColor = 'navy'
 ---
 
 <Layout title='About Astro'>
@@ -32,13 +34,13 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
   </ul>
 </Layout>
 
-<style>
+<style define:vars={{ skillColor }}>
   h1 {
     color: purple;
     font-size: 4rem;
   }
   .skill {
-    color: green;
+    color: var(--skillColor);
     font-weight: bold;
   }
 </style>
