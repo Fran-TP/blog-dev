@@ -12,6 +12,7 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
 ---
 
 <Layout title='About Astro'>
+  <h1>About Me</h1>
   <p>Here are a few facts about me:</p>
   <ul>
     <li>My name is {identity.firstName}.</li>
@@ -27,6 +28,13 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
   </ul>
   <p>My skills are:</p>
   <ul>
-    {skills.map(skill => <li>{skill}</li>)}
+    {skills.map(skill => <li class='skill'>{skill}</li>)}
   </ul>
 </Layout>
+
+<style>
+  h1 {
+    color: purple;
+    font-size: 4rem;
+  }
+</style>
