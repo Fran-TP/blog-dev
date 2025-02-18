@@ -1,0 +1,34 @@
+---
+import Social from './Social.astro'
+
+const PLATFORMS = [
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com',
+    username: 'FranTP',
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com',
+    username: 'FranTP',
+  },
+]
+---
+
+<footer>
+  <p>
+    {
+      PLATFORMS.map(({ name, username }) => (
+        <Social platform={name} username={username} />
+      ))
+    }
+  </p>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>
