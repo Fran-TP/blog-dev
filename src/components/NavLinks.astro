@@ -8,7 +8,7 @@ const LINKS = [
 const { pathname } = Astro.url
 ---
 
-<ul class='gap-1 hidden md:flex'>
+<ul id='nav-bar' class='gap-1 hidden md:flex'>
   {
     LINKS.map(link => {
       return (
