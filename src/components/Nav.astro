@@ -1,6 +1,7 @@
 ---
 import AstroLogo from '@icons/AstroLogo.astro'
 import NavLinks from '@components/NavLinks.astro'
+import Hamburger from './Hamburger.astro'
 ---
 
 <nav class='flex items-center justify-between p-3'>
@@ -8,24 +9,15 @@ import NavLinks from '@components/NavLinks.astro'
     <AstroLogo class='size-7' />
   </a>
   <NavLinks />
-  <div id='burger-btn' class='flex flex-col gap-1 md:hidden'>
-    <div class='w-5 h-[2px] bg-white'></div>
-    <div class='w-5 h-[2px] bg-white'></div>
-    <div class='w-5 h-[2px] bg-white'></div>
-  </div>
+  <Hamburger />
 </nav>
 
 <script>
-  const navBar = document.querySelector('#nav-bar')
-  const burgerButton = document.querySelector('#burger-btn')
-
-  burgerButton?.addEventListener('click', () => {
-    navBar?.classList.toggle('expand')
-  })
+  import '@scripts/menu'
 </script>
 <style is:global>
   .expand {
-    display: flex;
-    flex-direction: column;
+    display: unset;
+    opacity: 1;
   }
 </style>
