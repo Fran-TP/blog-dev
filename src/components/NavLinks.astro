@@ -8,7 +8,7 @@ const LINKS = [
 const { pathname } = Astro.url
 ---
 
-<ul id='nav-bar' class='gap-1 hidden md:flex'>
+<ul id='nav-bar' class='gap-1 hidden opacity-0 md:opacity-100 md:flex'>
   {
     LINKS.map(link => {
       return (
@@ -46,3 +46,15 @@ const { pathname } = Astro.url
     })
   })
 </script>
+
+<style>
+  ul {
+    transition:
+      display 0.3s allow-discrete ease-in-out,
+      opacity 0.3s ease-in-out;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+</style>
