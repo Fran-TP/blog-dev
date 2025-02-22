@@ -1,0 +1,28 @@
+---
+
+---
+
+<div id='hamburger-button' class='hamburger'>
+  <span class='line rounded-lg'></span>
+  <span class='line rounded-lg'></span>
+  <span class='line rounded-lg'></span>
+</div>
+
+<style>
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+
+    @media (width >= 48rem) {
+      display: none;
+    }
+  }
+
+  .line {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+  }
+</style>
