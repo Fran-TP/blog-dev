@@ -25,6 +25,12 @@
       "@icons/*": [
         "src/icons/*"
       ],
+      "@scripts/*": [
+        "src/scripts/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
     }
   }
 }
