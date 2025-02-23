@@ -8,11 +8,14 @@ const LINKS = [
 const { pathname } = Astro.url
 ---
 
-<ul id='nav-bar' class='gap-1 hidden opacity-0 md:opacity-100 md:flex'>
+<ul
+  id='nav-bar'
+  class='md:gap-1 w-full hidden-navbar md:w-fit flex flex-col md:flex-row p-4 md:p-0 border-b-2 border-slate-500/30 md:border-b-0'
+>
   {
     LINKS.map(link => {
       return (
-        <li class='px-1 py-1 flex-1 text-center'>
+        <li class=' rounded-sm inline-flex items-center md:justify-center hover:bg-slate-500/30 cursor-pointer transition-colors duration-200'>
           <a
             data-link={link.href}
             href={link.href}
@@ -20,7 +23,7 @@ const { pathname } = Astro.url
               {
                 'text-blue-500': pathname === link.href,
               },
-              'hover:text-blue-500',
+              'w-full px-2 py-1',
             ]}
           >
             <span>{link.name}</span>
@@ -48,13 +51,11 @@ const { pathname } = Astro.url
 </script>
 
 <style>
-  ul {
-    transition:
-      display 0.3s allow-discrete ease-in-out,
-      opacity 0.3s ease-in-out;
+  .hidden-navbar {
+    display: none;
 
-    @starting-style {
-      opacity: 0;
+    @media (width >= 768px) {
+      display: flex;
     }
   }
 </style>
