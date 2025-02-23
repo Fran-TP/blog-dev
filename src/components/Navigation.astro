@@ -4,20 +4,27 @@ import NavLinks from '@components/NavLinks.astro'
 import Hamburger from './Hamburger.astro'
 ---
 
-<nav class='flex items-center justify-between p-3'>
-  <a href='/' class='flex items-center gap-2'>
-    <AstroLogo class='size-7' />
-  </a>
+<nav
+  class='flex flex-col md:flex-row items-center justify-between border-b-0 md:border-b-2 border-slate-500/30'
+>
+  <div
+    class='flex items-center gap-3 w-full justify-between px-4 border-b-2 border-slate-500/30 md:border-b-0'
+  >
+    <a href='/' class='py-4' data-link='/'>
+      <AstroLogo class='size-7' />
+    </a>
+    <Hamburger />
+  </div>
   <NavLinks />
-  <Hamburger />
 </nav>
 
 <script>
-  import '@scripts/menu'
+  document.addEventListener('astro:page-load', () => {
+    const hamburgerButton = document.querySelector('#hamburger-button')
+    const navBar = document.querySelector('#nav-bar')
+
+    hamburgerButton?.addEventListener('click', () => {
+      navBar?.classList.toggle('hidden-navbar')
+    })
+  })
 </script>
-<style is:global>
-  .expand {
-    display: unset;
-    opacity: 1;
-  }
-</style>
