@@ -10,7 +10,7 @@ const { pathname } = Astro.url
 
 <ul
   id='nav-bar'
-  class='md:gap-1 w-full hidden-navbar md:w-fit flex flex-col md:flex-row p-4 md:p-0 border-b-2 border-slate-500/30 md:border-b-0'
+  class='md:gap-1 w-full md:w-fit hidden md:flex flex-col md:flex-row p-4 md:p-0 border-b-2 border-slate-500/30 md:border-b-0'
 >
   {
     LINKS.map(link => {
@@ -51,11 +51,7 @@ const { pathname } = Astro.url
 </script>
 
 <style>
-  .hidden-navbar {
-    display: none;
-
-    @media (width >= 768px) {
-      display: flex;
-    }
+  .expanded-navbar {
+    display: flex;
   }
 </style>
