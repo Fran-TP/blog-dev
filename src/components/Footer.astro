@@ -1,33 +1,32 @@
 ---
 import Social from '@components/Social.astro'
+import Github from '@icons/Github.astro'
+import X from '@icons/X.astro'
 
 const PLATFORMS = [
   {
-    name: 'Twitter',
-    url: 'https://twitter.com',
-    username: 'FranTP',
-  },
-  {
     name: 'GitHub',
     url: 'https://github.com',
-    username: 'FranTP',
+    username: 'Fran-TP',
+    icon: Github,
+  },
+  {
+    name: 'X',
+    url: 'https://x.com',
+    username: '_Fran_Torres_',
+    icon: X,
   },
 ]
 ---
 
 <footer class='p-4 bg-slate-800 text-white'>
-  <p>
+  <p class='flex gap-2'>
     {
-      PLATFORMS.map(({ name, username }) => (
-        <Social platform={name} username={username} />
+      PLATFORMS.map(({ name, username, icon: Icon }) => (
+        <Social platform={name} username={username}>
+          <Icon class='size-5' />
+        </Social>
       ))
     }
   </p>
 </footer>
-
-<style>
-  footer {
-    display: flex;
-    gap: 1rem;
-  }
-</style>
