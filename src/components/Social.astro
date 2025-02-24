@@ -7,12 +7,13 @@ interface Props {
 const { platform, username } = Astro.props
 ---
 
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
+<a
+  href={`https://www.${platform}.com/${username}`}
+  class='opacity-70 hover:opacity-100'
+  target='_blank'
+  aria-label={`Follow me on ${platform}`}
+>
+  <slot />
+</a>
 
-<style>
-  a {
-    padding: 5px 10px;
-    color: white;
-    background-color: #4c1d95;
-  }
-</style>
+<style></style>
