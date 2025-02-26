@@ -1,4 +1,11 @@
 ---
+import type { MarkdownLayoutProps } from 'astro'
+
+interface Props extends MarkdownLayoutProps {
+  title: string
+  author: string
+}
+
 const { frontmatter } = Astro.props
 ---
 
