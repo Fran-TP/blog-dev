@@ -1,14 +1,36 @@
 ---
 import type { MarkdownLayoutProps } from 'astro'
+import { formatDate } from '@lib/utils'
+import BaseLayout from './BaseLayout.astro'
 
-interface Props extends MarkdownLayoutProps<{}> {
+type Props = MarkdownLayoutProps<{
   title: string
   author: string
-}
+  date: string
+  image: {
+    url: string
+    alt: string
+  }
+  description: string
+  pubDate: string
+}>
 
 const { frontmatter } = Astro.props
 ---
 
-<h1>{frontmatter.title}</h1>
-<p>by {frontmatter.author}</p>
-<slot />
+<BaseLayout title={frontmatter.title}>
+  <h1>{frontmatter.title}</h1>
+  <p>
+    {formatDate(frontmatter.pubDate)}
+  </p>
+  <p><em>{frontmatter.description}</em></p>
+  <p>
+    written by: <strong>{frontmatter.author}</strong>
+  </p>
+  <img
+    class='aspect-video w-3xl my-8 mx-auto border-4 border-blue-900 rounded-lg'
+    src={frontmatter.image.url}
+    alt={frontmatter.image.alt}
+  />
+  <slot />
+</BaseLayout>
