@@ -1,5 +1,12 @@
 ---
+import type { MarkdownLayoutProps } from 'astro'
+import type { Post } from '@definitions/post'
 import Layout from '@layouts/Layout.astro'
+import { formatDate } from '@lib/utils'
+
+const allBlogs = Object.values(
+  import.meta.glob<MarkdownLayoutProps<Post>>('./posts/*.md', { eager: true })
+)
 ---
 
 <Layout title='Blog'>
@@ -8,15 +15,38 @@ import Layout from '@layouts/Layout.astro'
     Welcome to my blog! I'm excited to share my thoughts and experiences with
     you.
   </p>
-  <ul>
-    <li>
-      <a href='/posts/post-1'>Post 1</a>
-    </li>
-    <li>
-      <a href='/posts/post-2/'>Post 2</a>
-    </li>
-    <li>
-      <a href='/posts/post-3/'>Post 3</a>
-    </li>
-  </ul>
+  <section class='flex gap-2 mt-5 flex-wrap'>
+    {
+      allBlogs.map(post => (
+        <article class='bg-gray-700 p-1 rounded-xl w-80 flex flex-col'>
+          <header class='aspect-video rounded-t-lg overflow-hidden'>
+            <img
+              src={post.frontmatter.image.url}
+              alt={post.frontmatter.image.alt}
+            />
+          </header>
+          <div class='flex-1'>
+            <time
+              class='p-2 inline-block text-sm leading-6 text-gray-500 dark:text-gray-400'
+              datetime={post.frontmatter.pubDate}
+            >
+              {formatDate(post.frontmatter.pubDate)}
+            </time>
+            <h2 class='px-2 pt-2 text-xl uppercase'>
+              {post.frontmatter.title}
+            </h2>
+            <p class='line-clamp-3 px-2 my-2'>{post.frontmatter.description}</p>
+          </div>
+          <footer class='p-4'>
+            <a
+              href={post.url}
+              class='p-3 inline-block mx-auto bg-slate-800 text-gray-300 rounded-lg'
+            >
+              Read more
+            </a>
+          </footer>
+        </article>
+      ))
+    }
+  </section>
 </Layout>
