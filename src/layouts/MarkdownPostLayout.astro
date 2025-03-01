@@ -6,22 +6,24 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 
 type Props = MarkdownLayoutProps<Post>
 
-const { frontmatter } = Astro.props
+const {
+  frontmatter: { title, pubDate, description, author, image },
+} = Astro.props
 ---
 
-<BaseLayout title={frontmatter.title}>
-  <h1>{frontmatter.title}</h1>
+<BaseLayout title={title}>
+  <h1>{title}</h1>
   <p>
-    {formatDate(frontmatter.pubDate)}
+    {formatDate(pubDate)}
   </p>
-  <p><em>{frontmatter.description}</em></p>
+  <p><em>{description}</em></p>
   <p>
-    written by: <strong>{frontmatter.author}</strong>
+    written by: <strong>{author}</strong>
   </p>
   <img
     class='aspect-video w-3xl my-8 mx-auto border-4 border-blue-900 rounded-lg'
-    src={frontmatter.image.url}
-    alt={frontmatter.image.alt}
+    src={image.url}
+    alt={image.alt}
   />
   <slot />
 </BaseLayout>
