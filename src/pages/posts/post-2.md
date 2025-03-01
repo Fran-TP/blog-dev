@@ -1,8 +1,8 @@
 ---
 layout: '@layouts/MarkdownPostLayout.astro'
-title: My Second Blog Post
+title: My second blog post
 author: Astro Learner
-description: "After learning some Astro, I couldn't stop!"
+description: After learning some Astro, I couldn't stop!, so I wrote a second blog post and imported a component from memory, too!
 image:
   url: 'https://docs.astro.build/assets/arc.webp'
   alt: 'The Astro logo on a dark background with a purple gradient arc.'
