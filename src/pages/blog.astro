@@ -1,7 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from 'astro'
 import type { Post } from '@definitions/post'
-import Layout from '@layouts/Layout.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogCard from '@components/BlogCard.astro'
 
 const allBlogs = Object.values(
@@ -9,7 +9,7 @@ const allBlogs = Object.values(
 )
 ---
 
-<Layout title='Blog'>
+<BaseLayout title='Blog'>
   <h1>Blog</h1>
   <p>
     Welcome to my blog! I'm excited to share my thoughts and experiences with
@@ -18,4 +18,4 @@ const allBlogs = Object.values(
   <section class='flex gap-2 mt-5 flex-wrap justify-center md:justify-evenly'>
     {allBlogs.map(post => <BlogCard post={post} />)}
   </section>
-</Layout>
+</BaseLayout>
