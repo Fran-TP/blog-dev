@@ -1,8 +1,8 @@
 ---
 layout: '@layouts/MarkdownPostLayout.astro'
-title: 'My First Blog Post'
+title: 'My first blog post'
 pubDate: 2022-07-01
-description: 'This is the first post of my new Astro blog.'
+description: This is the first post of my new Astro blog, where I will share my learning journey, starting with the basics, and building up to more complex topics.
 author: 'Astro Learner'
 image:
   url: 'https://docs.astro.build/assets/rose.webp'
