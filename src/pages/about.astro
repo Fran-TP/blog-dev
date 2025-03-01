@@ -1,5 +1,5 @@
 ---
-import Layout from '@layouts/Layout.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
 
 const identity = {
   firstName: 'Sarah',
@@ -13,7 +13,7 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
 const skillColor = 'green'
 ---
 
-<Layout title='About Astro'>
+<BaseLayout title='About Astro'>
   <h1>About Me</h1>
   <p>Here are a few facts about me:</p>
   <ul>
@@ -32,7 +32,7 @@ const skillColor = 'green'
   <ul>
     {skills.map(skill => <li class='skill'>{skill}</li>)}
   </ul>
-</Layout>
+</BaseLayout>
 
 <style define:vars={{ skillColor }}>
   h1 {
