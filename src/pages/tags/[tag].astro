@@ -1,20 +1,36 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
+import type { Post } from '@definitions/post'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import type { MarkdownLayoutProps } from 'astro'
 
 export async function getStaticPaths() {
-  return [
-    { params: { tag: 'astro' } },
-    { params: { tag: 'successes' } },
-    { params: { tag: 'community' } },
-    { params: { tag: 'blogging' } },
-    { params: { tag: 'setbacks' } },
-    { params: { tag: 'learning in public' } },
+  const tags = [
+    'astro',
+    'successes',
+    'community',
+    'blogging',
+    'setbacks',
+    'learning in public',
   ]
+  const postsMarkdownFiles = import.meta.glob<MarkdownLayoutProps<Post>>(
+    '../posts/*.md'
+  )
+  const allBlogs = await Promise.all(
+    Object.values(postsMarkdownFiles).map(fn => fn())
+  )
+
+  return tags.map(tag => ({ params: { tag }, props: { allBlogs } }))
 }
 
 const { tag } = Astro.params
+const { allBlogs } = Astro.props
+const filteredBlogs = allBlogs.filter(blog =>
+  blog.frontmatter.tags.includes(tag)
+)
+console.log(filteredBlogs)
 ---
 
 <BaseLayout title={tag}>
   <p>Posts tagged with {tag}</p>
+  <div></div>
 </BaseLayout>
