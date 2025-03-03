@@ -8,4 +8,5 @@ export interface Post {
   }
   description: string
   pubDate: string
+  tags: string[]
 }
