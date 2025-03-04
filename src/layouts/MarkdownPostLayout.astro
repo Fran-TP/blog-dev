@@ -7,7 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 type Props = MarkdownLayoutProps<Post>
 
 const {
-  frontmatter: { title, pubDate, description, author, image },
+  frontmatter: { title, pubDate, tags, description, author, image },
 } = Astro.props
 ---
 
@@ -25,5 +25,8 @@ const {
     src={image.url}
     alt={image.alt}
   />
+  <div>
+    {tags.map(tag => <p>{tag}</p>)}
+  </div>
   <slot />
 </BaseLayout>
