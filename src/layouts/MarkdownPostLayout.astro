@@ -3,6 +3,7 @@ import type { MarkdownLayoutProps } from 'astro'
 import type { Post } from '@definitions/post'
 import { formatDate } from '@lib/utils'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import TagsList from '@components/TagsList.astro'
 
 type Props = MarkdownLayoutProps<Post>
 
@@ -12,21 +13,21 @@ const {
 ---
 
 <BaseLayout title={title}>
-  <h1>{title}</h1>
-  <p>
-    {formatDate(pubDate)}
-  </p>
-  <p><em>{description}</em></p>
-  <p>
-    written by: <strong>{author}</strong>
-  </p>
-  <img
-    class='aspect-video w-3xl my-8 mx-auto border-4 border-blue-900 rounded-lg'
-    src={image.url}
-    alt={image.alt}
-  />
-  <div>
-    {tags.map(tag => <p>{tag}</p>)}
+  <div class='container mx-auto max-w-4xl px-4 py-8'>
+    <TagsList tags={tags} />
+    <h1>{title}</h1>
+    <p>
+      {formatDate(pubDate)}
+    </p>
+    <p><em>{description}</em></p>
+    <p>
+      written by: <strong>{author}</strong>
+    </p>
+    <img
+      class='aspect-video w-3xl my-8 mx-auto border-4 border-blue-900 rounded-lg'
+      src={image.url}
+      alt={image.alt}
+    />
+    <slot />
   </div>
-  <slot />
 </BaseLayout>
