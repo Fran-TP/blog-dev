@@ -1,7 +1,23 @@
 ---
+import type { Post } from '@definitions/post'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import type { MarkdownLayoutProps } from 'astro'
+
+const posts = Object.values(
+  import.meta.glob<MarkdownLayoutProps<Post>>('../posts/*.md', { eager: true })
+)
+const uniqueTags = [...new Set(posts.flatMap(post => post.frontmatter.tags))]
 ---
 
 <BaseLayout title='Tags'>
   <h1>thi is a index files for tags</h1>
+  <ul>
+    {
+      uniqueTags.map(tag => (
+        <li>
+          <a href={`/tags/${tag}`}>{tag}</a>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
