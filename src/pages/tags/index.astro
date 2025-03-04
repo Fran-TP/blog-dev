@@ -11,13 +11,30 @@ const uniqueTags = [...new Set(posts.flatMap(post => post.frontmatter.tags))]
 
 <BaseLayout title='Tags'>
   <h1>thi is a index files for tags</h1>
-  <ul>
+  <div class='tags'>
     {
       uniqueTags.map(tag => (
-        <li>
+        <p class='tag'>
           <a href={`/tags/${tag}`}>{tag}</a>
-        </li>
+        </p>
       ))
     }
-  </ul>
+  </div>
 </BaseLayout>
+
+<style>
+  a {
+    color: #00539f;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    padding: 0.5em 1em;
+    font-size: 1.15em;
+    background-color: #f8fcfd;
+  }
+</style>
