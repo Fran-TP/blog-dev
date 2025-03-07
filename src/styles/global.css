@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --color-secondary: hsl(240 3.7% 15.9%);
+  --color-primary: hsl(200 4.5% 12.8%);
+  --color-accent: hsl(200 4.5% 12.8%);
+  --color-background: hsl(240 3.7% 15.9%);
+}
 html {
   background-color: #f1f5f9;
   font-family: sans-serif;
