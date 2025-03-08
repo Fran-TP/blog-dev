@@ -1,22 +1,13 @@
 ---
+import Badge from './Badge.astro'
+
 interface Props {
   tags: string[]
 }
+
 const { tags } = Astro.props
 ---
 
 <div class='flex flex-wrap self-start gap-2'>
-  {
-    tags.map(tag => (
-      <p class='capitalize rounded-full px-2.5 py-0.5 bg-secondary text-xs font-semibold inline-flex items-center justify-center'>
-        <a href={`/tags/${tag}`}>{tag}</a>
-      </p>
-    ))
-  }
+  {tags.map(tag => <Badge tag={tag} />)}
 </div>
-
-<style>
-  a {
-    text-decoration: transparent;
-  }
-</style>
