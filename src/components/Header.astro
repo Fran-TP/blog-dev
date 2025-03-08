@@ -1,7 +1,32 @@
 ---
 import Navigation from '@components/Navigation.astro'
+import AstroLogo from '@icons/AstroLogo.astro'
+import Hamburger from './Hamburger.astro'
 ---
 
-<header class='bg-slate-800'>
-  <Navigation />
+<header class='bg-gradient-to-r from-gray-900 to-gray-950 sticky top-0'>
+  <div
+    class='flex flex-col md:flex-row items-center justify-between md:px-4 border-b-0 md:border-b-2 border-slate-500/30'
+  >
+    <div
+      class='flex items-center gap-3 w-full justify-between px-4 md:px-0 border-b-2 border-slate-500/30 md:border-b-0'
+    >
+      <a href='/' class='py-4' data-link='/'>
+        <AstroLogo class='size-7' />
+      </a>
+      <Hamburger />
+    </div>
+    <Navigation />
+  </div>
 </header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const hamburgerButton = document.querySelector('#hamburger-button')
+    const navBar = document.querySelector('#nav-bar')
+
+    hamburgerButton?.addEventListener('click', () => {
+      navBar?.classList.toggle('expanded-navbar')
+    })
+  })
+</script>
