@@ -1,30 +1,7 @@
 ---
-import AstroLogo from '@icons/AstroLogo.astro'
 import NavLinks from '@components/NavLinks.astro'
-import Hamburger from '@components/Hamburger.astro'
 ---
 
-<nav
-  class='flex flex-col md:flex-row items-center justify-between md:px-4 border-b-0 md:border-b-2 border-slate-500/30'
->
-  <div
-    class='flex items-center gap-3 w-full justify-between px-4 md:px-0 border-b-2 border-slate-500/30 md:border-b-0'
-  >
-    <a href='/' class='py-4' data-link='/'>
-      <AstroLogo class='size-7' />
-    </a>
-    <Hamburger />
-  </div>
+<nav class='w-full md:w-auto'>
   <NavLinks />
 </nav>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const hamburgerButton = document.querySelector('#hamburger-button')
-    const navBar = document.querySelector('#nav-bar')
-
-    hamburgerButton?.addEventListener('click', () => {
-      navBar?.classList.toggle('expanded-navbar')
-    })
-  })
-</script>
