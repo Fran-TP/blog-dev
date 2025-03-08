@@ -1,26 +1,19 @@
 ---
-
+import Menu from '@icons/Menu.astro'
 ---
 
-<div id='hamburger-button' class='hamburger-button cursor-pointer'>
-  <span class='line rounded-lg'></span>
-  <span class='line rounded-lg'></span>
-  <span class='line rounded-lg'></span>
-</div>
+<button
+  id='hamburger-button'
+  class='size-9 flex items-center justify-center hamburger-button cursor-pointer rounded-full bg-gray-800'
+  type='button'
+>
+  <Menu class='stroke-2' />
+</button>
 
 <style>
   .hamburger-button {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    width: 24px;
-
     @media (width >= 768px) {
       display: none;
     }
-  }
-  .line {
-    height: 4px;
-    background-color: #fff;
   }
 </style>
