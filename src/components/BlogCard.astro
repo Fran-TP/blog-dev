@@ -1,51 +1,54 @@
 ---
-import type { MarkdownLayoutProps } from 'astro'
-import type { Post } from '@definitions/post'
+import type { CollectionEntry } from 'astro:content'
 import { formatDate } from '@lib/utils'
+import Badge from '@components/Badge.astro'
+import TagsList from './TagsList.astro'
 
 type Props = {
-  post: MarkdownLayoutProps<Post>
+  post: CollectionEntry<'posts'>
 }
 
-const { post } = Astro.props
+const {
+  post: { data, slug },
+} = Astro.props
+const { author, tags, description, image, pubDate, title } = data
 ---
 
-<article class='bg-gray-700 p-1 rounded-xl w-80 flex flex-col'>
-  <header class='aspect-video rounded-t-lg overflow-hidden'>
-    <img src={post.frontmatter.image.url} alt={post.frontmatter.image.alt} />
-  </header>
-  <div class='flex-1 p-2 flex flex-col'>
-    <time
-      class='inline-block text-sm leading-6 text-gray-500 dark:text-gray-400'
-      datetime={post.frontmatter.pubDate}
-    >
-      {formatDate(post.frontmatter.pubDate)}
-    </time>
-    <h2 class='mt-2 font-semibold text-lg dark:text-gray-200 text-gray-900'>
-      {post.frontmatter.title}
-    </h2>
-    <p
-      class='line-clamp-3 my-2 leading-6 text-sm text-gray-500 dark:text-gray-400 flex-1'
-    >
-      {post.frontmatter.description}
-    </p>
-    <div class='inline-flex items-center gap-x-2.5 mt-2'>
-      <img
-        src={`https://robohash.org/${post.frontmatter.author}`}
-        alt={post.frontmatter.author}
-        class='size-6 bg-gray-500 dark:bg-gray-400/20 rounded-full'
-      />
-      <p class='text-sm text-gray-900 dark:text-gray-200 font-semibold'>
-        {post.frontmatter.author}
+<article class='group bg-gray-900 rounded-xl flex-col'>
+  <a href={`/posts/${slug}`}>
+    <header class='aspect-video rounded-t-xl overflow-hidden'>
+      <img src={image.url} alt={image.alt} />
+    </header>
+    <div class='flex-1 p-6 flex flex-col'>
+      <div class='flex items-center justify-between'>
+        <TagsList tags={tags} />
+        <time
+          class='inline-block text-sm leading-6 text-gray-500 dark:text-gray-400'
+          datetime={pubDate.toISOString()}
+        >
+          {formatDate(pubDate.toISOString())}
+        </time>
+      </div>
+      <h3
+        class='group-hover:text-pink-400 transitions-color duration-200 mt-2 font-semibold text-xl text-semibold dark:text-gray-200 text-gray-900'
+      >
+        {title}
+      </h3>
+      <p
+        class='line-clamp-2 my-2 leading-6 text-sm text-gray-500 dark:text-gray-400 flex-1'
+      >
+        {description}
       </p>
+      <div class='inline-flex items-center gap-x-2.5 mt-2'>
+        <img
+          src={`https://robohash.org/${author}`}
+          alt={author}
+          class='size-6 bg-gray-500 dark:bg-gray-400/20 rounded-full'
+        />
+        <p class='text-sm text-gray-900 dark:text-gray-200 font-semibold'>
+          {author}
+        </p>
+      </div>
     </div>
-  </div>
-  <footer class='p-2'>
-    <a
-      href={post.url}
-      class='px-2 py-1 border-2 border-gray-500 dark:border-gray-400 inline-block text-sm mx-auto bg-slate-800 text-gray-300 rounded-md'
-    >
-      Read more
-    </a>
-  </footer>
+  </a>
 </article>
