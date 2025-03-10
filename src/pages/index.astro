@@ -1,11 +1,70 @@
 ---
+import BlogCard from '@components/BlogCard.astro'
+import ArrowRight from '@icons/ArrowRight.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+
+const [firstPost, secondPost, thirdPost] = await getCollection('posts')
 ---
 
 <BaseLayout title='First blog with Astro'>
-  <h1>Welcome to Astro</h1>
-  <p>
-    Astro is a new kind of static site builder that delivers lightning-fast
-    performance with a modern developer experience.
-  </p>
+  <section class='py-20'>
+    <div class='container mx-auto px-4'>
+      <div class='max-w-3xl text-center mx-auto'>
+        <h1
+          class='text-4xl font-bold mb-6 text-gray-900 dark:text-gray-200 sm:text-5xl md:text-6xl text-balance'
+        >
+          Discover Insights on
+          <span
+            class='bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent'
+            >Modern Technology</span
+          >
+        </h1>
+        <p class='mb-8 text-xl text-gray-300 text-balance'>
+          Thoughtful articles, tutorials, and perspectives on web development,
+          design, and the latest tech trends.
+        </p>
+        <div
+          class='flex flex-col gap-4 sm:flex-row items-center justify-center'
+        >
+          <a
+            href='/blog'
+            class='bg-gradient-to-r from-pink-500 to-violet-500 rounded-full px-6 py-3 text-base font-medium text-gray-200 transition-transform hover:scale-105'
+            >Explore Article</a
+          >
+          <a
+            href='/about'
+            class='rounded-full bg-gray-900 px-6 py-3 text-base font-medium transition-colors hover:bg-gray-800'
+            >About us</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class='py-16'>
+    <div class='container mx-auto px-4 lg:px-16'>
+      <div class='mb-10 flex items-center justify-between'>
+        <h2 class='text-2xl font-bold text-gray-200 sm:text-3xl'>
+          Featured post
+        </h2>
+        <a
+          href='/blog'
+          class='group transition-colors duration-200 flex items-center justify-center gap-1 text-sm font-medium text-gray-200 hover:text-pink-400 hover:underline'
+        >
+          View all
+          <ArrowRight
+            class='text-gray-200 group-hover:text-pink-400 transition-colors duration-200 size-4'
+            aria-label='Arrow pointing to blog'
+          />
+        </a>
+      </div>
+      <div class='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+        {
+          [firstPost, secondPost, thirdPost].map(post => (
+            <BlogCard post={post} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </BaseLayout>
