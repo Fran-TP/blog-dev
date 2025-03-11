@@ -5,6 +5,8 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
 
 const [firstPost, secondPost, thirdPost] = await getCollection('posts')
+const buttonStyle =
+  'bg-gradient-to-r from-pink-500 to-violet-500 rounded-full px-6 py-3 font-medium text-gray-200 transition-transform hover:scale-105'
 ---
 
 <BaseLayout title='First blog with Astro'>
@@ -27,9 +29,7 @@ const [firstPost, secondPost, thirdPost] = await getCollection('posts')
         <div
           class='flex flex-col gap-4 sm:flex-row items-center justify-center'
         >
-          <a
-            href='/blog'
-            class='bg-gradient-to-r from-pink-500 to-violet-500 rounded-full px-6 py-3 text-base font-medium text-gray-200 transition-transform hover:scale-105'
+          <a href='/blog' class='text-base' class:list={[buttonStyle]}
             >Explore Article</a
           >
           <a
@@ -83,7 +83,9 @@ const [firstPost, secondPost, thirdPost] = await getCollection('posts')
           class='flex flex-col justify-between sm:flex-row mx-auto max-w-md gap-3'
         >
           <input type='text' />
-          <button>Subscribe</button>
+          <button type='button' class:list={[buttonStyle, 'cursor-pointer']}
+            >Subscribe</button
+          >
         </div>
       </div>
     </div>
