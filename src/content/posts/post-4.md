@@ -6,7 +6,7 @@ image:
   url: https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
   alt: A stunning view of the Milky Way galaxy stretching across the night sky.
 pubDate: 2023-10-15
-tags: ['astronomy', 'space exploration', 'learning']
+tags: ['astronomy', 'space', 'learning']
 ---
 
 Welcome to my blog where I explore the wonders of the universe! In this post, I'll share my journey into the fascinating world of astronomy and space exploration.
