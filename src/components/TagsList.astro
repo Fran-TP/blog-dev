@@ -30,7 +30,7 @@ const { tags, id } = Astro.props
     let currentWidth = 0
     const containerWidth = containerTags.offsetWidth
 
-    tags.forEach((tag, index) => {
+    tags.forEach(tag => {
       // reset display
       tag.style.display = 'inline-block'
       // add 8px to the width for gap-2
@@ -72,10 +72,16 @@ const { tags, id } = Astro.props
     moreTag.textContent = `+${hiddenCount}`
   }
 
-  document.addEventListener('astro:page-load', () => {
-    updateVisibleTags(containerId)
-  })
-  window.addEventListener('resize', () => {
-    updateVisibleTags(containerId)
-  })
+  const handleResize = () => updateVisibleTags(containerId)
+
+  document.addEventListener(
+    'astro:page-load',
+    () => {
+      updateVisibleTags(containerId)
+
+      window.removeEventListener('resize', handleResize)
+      window.addEventListener('resize', handleResize)
+    },
+    { once: true }
+  )
 </script>
