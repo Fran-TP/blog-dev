@@ -21,7 +21,7 @@ const { author, tags, description, image, pubDate, title } = data
     </header>
     <div class='flex-1 p-6 flex flex-col'>
       <div class='flex items-center justify-between'>
-        <TagsList tags={tags} />
+        <TagsList tags={tags} id={slug} />
         <time
           class='inline-block text-sm leading-6 text-gray-500 dark:text-gray-400'
           datetime={pubDate.toISOString()}
