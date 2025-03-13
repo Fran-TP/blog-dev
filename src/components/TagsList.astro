@@ -3,11 +3,78 @@ import Badge from './Badge.astro'
 
 interface Props {
   tags: string[]
+  id: string
 }
 
-const { tags } = Astro.props
+const { tags, id } = Astro.props
 ---
 
-<div class='flex flex-wrap self-start gap-2'>
+<div id={id} class='flex items-center flex-wrap flex-1 gap-2'>
   {tags.map(tag => <Badge tag={tag} />)}
+  <span
+    id='more-tag'
+    class='rounded-full text-xs font-medium p-1 shrink-0 grow-0 bg-pink-500/10'
+    style={{ display: 'none' }}></span>
 </div>
+
+<script define:vars={{ containerId: id }}>
+  function updateVisibleTags(containerId) {
+    const containerTags = document.querySelector(`#${containerId}`)
+    if (containerTags === null) return
+
+    const tags = Array.from(containerTags.children).filter(
+      tag => tag.id !== 'more-tag'
+    )
+    const moreTag = containerTags.querySelector('#more-tag')
+
+    let currentWidth = 0
+    const containerWidth = containerTags.offsetWidth
+
+    tags.forEach((tag, index) => {
+      // reset display
+      tag.style.display = 'inline-block'
+      // add 8px to the width for gap-2
+      const tagWidth = tag.offsetWidth + 8
+      currentWidth += tagWidth
+
+      // if the tag is too wide, hide last tag
+      if (currentWidth > containerWidth && index > 0) {
+        tag.style.display = 'none'
+      }
+    })
+
+    const visibleTags = tags.filter(tag => tag.style.display !== 'none')
+    let hiddenCount = tags.length - visibleTags.length
+
+    if (hiddenCount <= 0) {
+      moreTag.style.display = 'none'
+      return
+    }
+
+    moreTag.style.display = 'inline-block'
+    moreTag.textContent = `+${hiddenCount}`
+
+    const totalWidth = currentWidth + moreTag.offsetWidth
+
+    if (totalWidth <= containerWidth) {
+      return
+    }
+
+    const lastVisibleTag = tags.findLast(tag => tag.style.display !== 'none')
+
+    if (!lastVisibleTag) {
+      return
+    }
+
+    lastVisibleTag.style.display = 'none'
+    hiddenCount++
+    moreTag.textContent = `+${hiddenCount}`
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    updateVisibleTags(containerId)
+  })
+  window.addEventListener('resize', () => {
+    updateVisibleTags(containerId)
+  })
+</script>
