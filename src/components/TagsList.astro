@@ -35,10 +35,11 @@ const { tags, id } = Astro.props
       tag.style.display = 'inline-block'
       // add 8px to the width for gap-2
       const tagWidth = tag.offsetWidth + 8
-      currentWidth += tagWidth
 
       // if the tag is too wide, hide last tag
-      if (currentWidth > containerWidth) {
+      if (currentWidth + tagWidth < containerWidth) {
+        currentWidth += tagWidth
+      } else {
         tag.style.display = 'none'
       }
     })
@@ -54,7 +55,7 @@ const { tags, id } = Astro.props
     moreTag.style.display = 'inline-block'
     moreTag.textContent = `+${hiddenCount}`
 
-    const totalWidth = currentWidth + moreTag.offsetWidth
+    const totalWidth = currentWidth + moreTag.offsetWidth + 8
 
     if (totalWidth <= containerWidth) {
       return
