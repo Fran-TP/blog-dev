@@ -38,7 +38,7 @@ const { tags, id } = Astro.props
       currentWidth += tagWidth
 
       // if the tag is too wide, hide last tag
-      if (currentWidth > containerWidth && index > 0) {
+      if (currentWidth > containerWidth) {
         tag.style.display = 'none'
       }
     })
