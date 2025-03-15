@@ -1,23 +1,17 @@
 ---
-import type { MarkdownLayoutProps } from 'astro'
-import type { Post } from '@definitions/post'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import BlogCard from '@components/BlogCard.astro'
-
-const allBlogs = Object.values(
-  import.meta.glob<MarkdownLayoutProps<Post>>('./posts/*.md', { eager: true })
-)
 ---
 
 <BaseLayout title='Blog'>
-  <h1>Blog</h1>
-  <p>
-    Welcome to my blog! I'm excited to share my thoughts and experiences with
-    you.
-  </p>
-  <section class='flex gap-2 mt-5 flex-wrap justify-center md:justify-evenly'>
-    {
-      //allBlogs.map(post => <BlogCard post={post} />)}
-    }
-  </section>
+  <div class='container mx-auto px-4 py-12'>
+    <div class='mx-auto max-w-4xl'>
+      <div class='flex flex-col'>
+        <h1
+          class='bg-gradient-to-r from-pink-400 to-violet-500 text-transparent bg-blend-color'
+        >
+          The Blog
+        </h1>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
