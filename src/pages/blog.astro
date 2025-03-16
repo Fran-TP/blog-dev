@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+
+const post = await getCollection('posts')
+
+const tags = post.flatMap(({ data: { tags } }) => tags)
 ---
 
 <BaseLayout title='Blog'>
