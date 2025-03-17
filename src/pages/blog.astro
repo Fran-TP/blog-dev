@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content'
 const post = await getCollection('posts')
 
 const tags = post.flatMap(({ data: { tags } }) => tags)
+const uniqueTags = [...new Set(tags)]
 ---
 
 <BaseLayout title='Blog'>
@@ -27,21 +28,13 @@ const tags = post.flatMap(({ data: { tags } }) => tags)
         >
           All Posts
         </button>
-        <button
-          class='rounded-full bg-gray-800 px-4 py-1.5 text-sm font-medium text-gray-300 hover:bg-gray-700'
-        >
-          Development
-        </button>
-        <button
-          class='rounded-full bg-gray-800 px-4 py-1.5 text-sm font-medium text-gray-300 hover:bg-gray-700'
-        >
-          Design
-        </button>
-        <button
-          class='rounded-full bg-gray-800 px-4 py-1.5 text-sm font-medium text-gray-300 hover:bg-gray-700'
-        >
-          Technology
-        </button>
+        {
+          uniqueTags.map(tag => (
+            <button class='rounded-full bg-pink-500/10 px-4 py-1.5 text-sm font-medium text-pink-400'>
+              {tag}
+            </button>
+          ))
+        }
       </div>
     </div>
   </div>
