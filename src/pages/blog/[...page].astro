@@ -35,5 +35,32 @@ const { page } = Astro.props
     >
       {page.data.map(post => <BlogCard post={post} />)}
     </div>
+    <div class='flex justify-center space-x-4'>
+      {
+        page.url.prev && (
+          <a href={page.url.prev} class='btn'>
+            previous
+          </a>
+        )
+      }
+      {
+        page.url.next && (
+          <a
+            href={page.url.next}
+            class='text-gray-200 bg-pink-500/10 rounded-full text-sm font-medium px-4 py-2'
+          >
+            next
+          </a>
+        )
+      }
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  @reference '../../styles/global.css'
+
+  .btn {
+    @apply text-gray-200 bg-pink-500/10 rounded-full text-sm font-medium px-4 py-2;
+  }
+</style>
