@@ -1,8 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { formatDate } from '@lib/utils'
-import Badge from '@components/Badge.astro'
-import TagsList from './TagsList.astro'
+import TagsList from '@components/TagsList.astro'
 
 type Props = {
   post: CollectionEntry<'posts'>
@@ -14,7 +13,10 @@ const {
 const { author, tags, description, image, pubDate, title } = data
 ---
 
-<article class='group bg-gray-900 rounded-xl flex-col'>
+<article
+  transition:name={`img-${slug}`}
+  class='group bg-gray-900 rounded-xl flex-col'
+>
   <a href={`/posts/${slug}`}>
     <header class='aspect-video rounded-t-xl overflow-hidden'>
       <img src={image.url} alt={image.alt} />
