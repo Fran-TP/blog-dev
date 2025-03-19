@@ -8,13 +8,13 @@ import TagsList from '@components/TagsList.astro'
 type Props = MarkdownLayoutProps<Post>
 
 const {
-  frontmatter: { title, pubDate, tags, description, author, image },
+  frontmatter: { title, pubDate, tags, description, author, image, url },
 } = Astro.props
 ---
 
 <BaseLayout title={title}>
   <div class='container mx-auto max-w-4xl px-4 py-8'>
-    <TagsList tags={tags} />
+    <TagsList tags={tags} id={url ?? 'layout'} />
     <h1>{title}</h1>
     <p>
       {formatDate(pubDate)}
