@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('posts')
+
+  return posts.map(article => ({
+    params: { slug: article.data.title },
+    props: { article },
+  }))
+}) satisfies GetStaticPaths
+
+const { slug } = Astro.params
+const { article } = Astro.props
+---
