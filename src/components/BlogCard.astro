@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { formatDate } from '@lib/utils'
+import { convertToSlug, formatDate } from '@lib/utils'
 import TagsList from '@components/TagsList.astro'
 
 type Props = {
@@ -11,13 +11,14 @@ const {
   post: { data, slug },
 } = Astro.props
 const { author, tags, description, image, pubDate, title } = data
+const titleSlug = convertToSlug(title)
 ---
 
 <article
   transition:name={`img-${slug}`}
   class='group bg-gray-900 rounded-xl flex-col'
 >
-  <a href={`/posts/${slug}`}>
+  <a href={`/posts/${titleSlug}`} class='flex flex-col h-full'>
     <header class='aspect-video rounded-t-xl overflow-hidden'>
       <img src={image.url} alt={image.alt} />
     </header>
