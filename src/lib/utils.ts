@@ -5,3 +5,7 @@ export const formatDate = (date: string): string => {
   })
   return fmt.format(new Date(`${normalizedDate}T00:00:00`))
 }
+
+export const convertToSlug = (slug: string) => {
+  return slug.replace(/\s+/g, '-').toLowerCase()
+}
