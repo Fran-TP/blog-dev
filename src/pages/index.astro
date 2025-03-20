@@ -4,7 +4,11 @@ import BlogCard from '@components/BlogCard.astro'
 import ArrowRight from '@icons/ArrowRight.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 
-const [firstPost, secondPost, thirdPost] = await getCollection('posts')
+const posts = await getCollection('posts')
+const latestPosts = posts
+  .slice(0, 3)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+console.log(latestPosts)
 const buttonStyle =
   'bg-gradient-to-r from-pink-500 to-violet-500 rounded-full px-6 py-3 font-medium text-gray-200 transition-transform hover:scale-105'
 ---
@@ -57,11 +61,7 @@ const buttonStyle =
         </a>
       </div>
       <div class='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-        {
-          [firstPost, secondPost, thirdPost].map(post => (
-            <BlogCard post={post} />
-          ))
-        }
+        {latestPosts.map(post => <BlogCard post={post} />)}
       </div>
     </div>
   </section>
