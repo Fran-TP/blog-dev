@@ -10,31 +10,62 @@ export const convertToSlug = (slug: string) => {
   return slug.replace(/\s+/g, '-').toLowerCase()
 }
 
-export const generatePagination = (currentPage: number, totalPages: number) => {
-  const MIN_PAGES = 7
-  const FIRST_PAGE_LIMIT = 3
+export const range = (start: number, end: number) => {
+  const length = end - start + 1
 
-  if (totalPages <= MIN_PAGES) {
-    return Array.from({ length: totalPages }, (_, i) => i + 1)
+  return Array.from({ length }, (_, idx) => idx + start)
+}
+
+export const generatePagination = ({
+  currentPage,
+  totalPages,
+  siblingCount = 1,
+}: {
+  currentPage: number
+  totalPages: number
+  siblingCount?: number
+}) => {
+  const DOTS = '...'
+  const firstPageIndex = 1
+  const lastPageIndex = totalPages
+
+  // total sibling count is determined by firstPage + lastPage + currentPage + 2 * DOTS
+  const totalSiblingCount = siblingCount + 5
+
+  if (totalPages <= totalSiblingCount) {
+    return range(firstPageIndex, totalPages)
   }
 
-  if (currentPage <= FIRST_PAGE_LIMIT) {
-    return [1, 2, 3, '...', totalPages - 1, totalPages]
+  const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
+  const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages)
+
+  // there should bet at least 2 sibling items between firstPage and currentPage on the left side of the currentPage and 2 sibling items between currentPage and lastPage on the right side of the currentPage
+  const shouldShowLeftDots = leftSiblingIndex > 2
+  const shouldShowRightDots = rightSiblingIndex < totalPages - 2
+
+  // case 1: no left dots to show, but right dots to show
+
+  if (!shouldShowLeftDots && shouldShowRightDots) {
+    const leftItemCount = 3 + 2 * siblingCount
+    const leftRange = range(firstPageIndex, leftItemCount)
+
+    return [...leftRange, DOTS, totalPages]
   }
 
-  // if the current page is in the 3 last pages
-  if (currentPage >= totalPages - 2) {
-    return [1, 2, '...', totalPages - 2, totalPages - 1, totalPages]
+  // case 2: left dots to show, but no right dots to show
+  if (shouldShowLeftDots && !shouldShowRightDots) {
+    const rightItemCount = 3 + 2 * siblingCount
+    const rightRange = range(totalPages - rightItemCount + 1, totalPages)
+
+    return [firstPageIndex, DOTS, ...rightRange]
   }
 
-  // if the current page is in then middle
-  return [
-    1,
-    '...',
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    '...',
-    totalPages,
-  ]
+  // case 3: both left and right dots to show
+  if (shouldShowLeftDots && shouldShowRightDots) {
+    const leftRange = range(leftSiblingIndex, rightSiblingIndex)
+
+    return [firstPageIndex, DOTS, ...leftRange, DOTS, lastPageIndex]
+  }
+
+  return []
 }
