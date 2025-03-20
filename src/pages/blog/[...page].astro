@@ -13,6 +13,11 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths
 
 const { page } = Astro.props
+const { data } = page
+const sortedData = data.sort(
+  ({ data: { pubDate: a } }, { data: { pubDate: b } }) =>
+    b.getTime() - a.getTime()
+)
 ---
 
 <BaseLayout title='Blog'>
@@ -33,7 +38,7 @@ const { page } = Astro.props
     <div
       class='mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:px-4 lg:px-10'
     >
-      {page.data.map(post => <BlogCard post={post} />)}
+      {sortedData.map(post => <BlogCard post={post} />)}
     </div>
     <div class='flex justify-center space-x-4'>
       {
