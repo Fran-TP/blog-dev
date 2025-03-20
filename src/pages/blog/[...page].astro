@@ -14,7 +14,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const { page } = Astro.props
 const { data } = page
-const sortedData = data.sort(
+const sortedData = data.toSorted(
   ({ data: { pubDate: a } }, { data: { pubDate: b } }) =>
     b.getTime() - a.getTime()
 )
