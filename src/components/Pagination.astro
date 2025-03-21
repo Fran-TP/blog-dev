@@ -1,0 +1,35 @@
+---
+import { generatePagination } from '@lib/utils'
+import type { Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  pageEntry: Page<CollectionEntry<'posts'>>
+}
+
+const { pageEntry: page } = Astro.props
+const initializePagination = generatePagination({
+  currentPage: page.currentPage,
+  totalPages: page.lastPage,
+})
+---
+
+<nav class='flex justify-center space-x-4'>
+  {
+    initializePagination.map(paginationItem => {
+      return (
+        <a
+          href={`/blog${paginationItem === 1 ? '' : `/${paginationItem}`}`}
+          class:list={[
+            {
+              'bg-pink-500/10 text-pink-500':
+                paginationItem === page.currentPage,
+            },
+          ]}
+        >
+          {paginationItem}
+        </a>
+      )
+    })
+  }
+</nav>
