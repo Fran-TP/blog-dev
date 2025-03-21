@@ -1,7 +1,7 @@
 ---
 title: My first blog post
 author: Astro Learner
-pubDate: 2022-07-01
+pubDate: 2025-03-20
 description: This is the first post of my new Astro blog, where I will share my learning journey, starting with the basics, and building up to more complex topics.
 image:
   url: https://docs.astro.build/assets/rose.webp

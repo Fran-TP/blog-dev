@@ -4,10 +4,22 @@ import BlogCard from '@components/BlogCard.astro'
 import ArrowRight from '@icons/ArrowRight.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 
-const posts = await getCollection('posts')
-const latestPosts = posts
-  .slice(0, 3)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+const posts = await getCollection('posts', ({ data }) => {
+  console.log(
+    new Date(
+      new Date(data.pubDate).toLocaleString('en-US', {
+        timeZone: 'America/Lima',
+      })
+    ),
+    new Date().toLocaleDateString(),
+    {
+      blogDate: new Date(data.pubDate).toISOString(),
+      currentDate: new Date().toISOString(),
+    }
+  )
+  return data.pubDate.getTime() >= new Date().getTime()
+})
+const latestPosts = posts.slice(0, 3)
 console.log(latestPosts)
 const buttonStyle =
   'bg-gradient-to-r from-pink-500 to-violet-500 rounded-full px-6 py-3 font-medium text-gray-200 transition-transform hover:scale-105'
