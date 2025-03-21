@@ -1,4 +1,6 @@
 ---
+import ChevronLeft from '@icons/ChevronLeft.astro'
+import ChevronRight from '@icons/ChevronRight.astro'
 import { generatePagination } from '@lib/utils'
 import type { Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
@@ -12,18 +14,36 @@ const initializePagination = generatePagination({
   currentPage: page.currentPage,
   totalPages: page.lastPage,
 })
+
+const commonButtonStyle =
+  'inline-flex items-center justify-center size-10 text-gray-200 rounded-full transition-colors duration-200'
 ---
 
-<nav class='flex justify-center space-x-4'>
+<nav class='flex justify-center items-center gap-2'>
+  <a
+    href={page.url.prev}
+    class:list={[
+      commonButtonStyle,
+      {
+        'cursor-not-allowed bg-gray-800 text-gray-600': !page.url.prev,
+        'bg-gray-800 text-gray-200 hover:bg-gray-700': page.url.prev,
+      },
+    ]}
+  >
+    <ChevronLeft class='size-6 text-inherit' aria-label='Previous page' />
+  </a>
   {
     initializePagination.map(paginationItem => {
       return (
         <a
           href={`/blog${paginationItem === 1 ? '' : `/${paginationItem}`}`}
           class:list={[
+            commonButtonStyle,
             {
-              'bg-pink-500/10 text-pink-500':
+              'bg-gradient-to-r from-pink-500 to-violet-500':
                 paginationItem === page.currentPage,
+              'bg-gray-800 text-gray-300 hover:bg-gray-700':
+                paginationItem !== page.currentPage,
             },
           ]}
         >
@@ -32,4 +52,16 @@ const initializePagination = generatePagination({
       )
     })
   }
+  <a
+    href={page.url.next}
+    class:list={[
+      commonButtonStyle,
+      {
+        'cursor-not-allowed bg-gray-800 text-gray-600': !page.url.next,
+        'bg-gray-800 text-gray-200 hover:bg-gray-700': page.url.next,
+      },
+    ]}
+  >
+    <ChevronRight class='size-6' aria-label='Next page' />
+  </a>
 </nav>
