@@ -3,13 +3,13 @@ import type { GetStaticPaths } from 'astro'
 import BlogCard from '@components/BlogCard.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
-import { generatePagination } from '@lib/utils'
+import Pagination from '@components/Pagination.astro'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const post = await getCollection('posts')
 
   return paginate(post, {
-    pageSize: 1,
+    pageSize: 9,
   })
 }) satisfies GetStaticPaths
 
@@ -41,28 +41,7 @@ const sortedData = data.toSorted(
     >
       {sortedData.map(post => <BlogCard post={post} />)}
     </div>
-    <div class='flex justify-center space-x-4'>
-      {
-        generatePagination({
-          currentPage: page.currentPage,
-          totalPages: page.lastPage,
-        }).map(numberPage => {
-          return (
-            <a
-              href={`/blog${numberPage === 1 ? '' : `/${numberPage}`}`}
-              class:list={[
-                {
-                  'bg-pink-500/10 text-pink-500':
-                    numberPage === page.currentPage,
-                },
-              ]}
-            >
-              {numberPage}
-            </a>
-          )
-        })
-      }
-    </div>
+    <Pagination pageEntry={page} />
   </div>
 </BaseLayout>
 
