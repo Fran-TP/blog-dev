@@ -5,7 +5,8 @@ description: Learn why code reviews are essential for maintaining code quality a
 image:
   url: https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
   alt: Developers collaborating on a code review.
-
+  width: 1180
+  height: 780
 pubDate: 2023-10-15
 tags: ['code review', 'software development', 'best practices']
 ---

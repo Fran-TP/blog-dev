@@ -5,6 +5,8 @@ description: After learning some Astro, I couldnt stop!, so I wrote a second blo
 image:
   url: https://docs.astro.build/assets/arc.webp
   alt: The Astro logo on a dark background with a purple gradient arc.
+  width: 1281
+  height: 721
 pubDate: 2022-07-08
 tags: ['astro', 'blogging', 'learning', 'successes']
 ---

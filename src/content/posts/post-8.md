@@ -5,6 +5,8 @@ description: A guide to understanding and building RESTful APIs for modern appli
 image:
   url: https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
   alt: A diagram explaining REST API architecture.
+  width: 1350
+  height: 900
 pubDate: 2023-10-15
 tags: ['api', 'rest', 'web development']
 ---

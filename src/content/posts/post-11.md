@@ -5,6 +5,8 @@ description: Discover how artificial intelligence is transforming software devel
 image:
   url: https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
   alt: AI-powered software development process.
+  width: 1350
+  height: 900
 pubDate: 2023-10-15
 tags: ['AI', 'machine learning', 'software development']
 ---

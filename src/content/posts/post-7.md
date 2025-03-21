@@ -5,6 +5,8 @@ description: Learn the fundamentals of Test-Driven Development (TDD) and how it 
 image:
   url: https://images.unsplash.com/photo-1563170423-18f482d82cc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
   alt: A developer writing test cases in an IDE.
+  width: 1350
+  height: 1799
 pubDate: 2023-10-15
 tags: ['tdd', 'testing', 'software development']
 ---

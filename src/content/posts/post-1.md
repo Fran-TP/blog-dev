@@ -6,6 +6,8 @@ description: This is the first post of my new Astro blog, where I will share my 
 image:
   url: https://docs.astro.build/assets/rose.webp
   alt: The Astro logo on a dark background with a pink glow.
+  width: 1281
+  height: 721
 tags: ['astro', 'blogging', 'learning', 'astro learner']
 ---
 

@@ -3,8 +3,10 @@ title: Secure Coding Practices for Developers
 author: Software Engineer
 description: Learn how to write secure code to protect applications from vulnerabilities and cyber threats.
 image:
-  url: https://images.unsplash.com/photo-1593113580641-1761bd20d5c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
+  url: https://images.unsplash.com/photo-1655036387197-566206c80980?q=80&w=2070&auto=format&fit=crop
   alt: Developer implementing secure coding practices.
+  width: 2070
+  height: 1380
 pubDate: 2023-10-15
 tags: ['security', 'secure coding', 'software development']
 ---
