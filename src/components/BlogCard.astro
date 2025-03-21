@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import { convertToSlug, formatDate } from '@lib/utils'
 import TagsList from '@components/TagsList.astro'
+import { Image } from 'astro:assets'
 
 type Props = {
   post: CollectionEntry<'posts'>
@@ -14,13 +15,15 @@ const { author, tags, description, image, pubDate, title } = data
 const titleSlug = convertToSlug(title)
 ---
 
-<article
-  transition:name={`img-${slug}`}
-  class='group bg-gray-900 rounded-xl flex-col'
->
+<article class='group bg-gray-900 rounded-xl flex-col'>
   <a href={`/posts/${titleSlug}`} class='flex flex-col h-full'>
     <header class='aspect-video rounded-t-xl overflow-hidden'>
-      <img src={image.url} alt={image.alt} />
+      <Image
+        src={image.url}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+      />
     </header>
     <div class='flex-1 p-6 flex flex-col'>
       <div class='flex items-center justify-between'>
@@ -43,10 +46,12 @@ const titleSlug = convertToSlug(title)
         {description}
       </p>
       <div class='inline-flex items-center gap-x-2.5 mt-2'>
-        <img
+        <Image
           src={`https://robohash.org/${author}`}
           alt={author}
           class='size-6 bg-gray-500 dark:bg-gray-400/20 rounded-full'
+          height={24}
+          width={24}
         />
         <p class='text-sm text-gray-900 dark:text-gray-200 font-semibold'>
           {author}
