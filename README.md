@@ -2,6 +2,8 @@
 
 > 🧑‍🚀 **Fran Torres Penadillo**
 
+![image](https://github.com/user-attachments/assets/e94c8362-d30a-444e-92d5-278a21a98257)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
