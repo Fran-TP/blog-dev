@@ -31,9 +31,3 @@ const { tag } = Astro.params
 const { posts } = Astro.props
 ---
 
-<BaseLayout title={tag}>
-  <p>Posts tagged with {tag}</p>
-  <section class='flex gap-2 mt-5 flex-wrap justify-center md:justify-evenly'>
-    {posts.map(post => <BlogCard post={post} />)}
-  </section>
-</BaseLayout>
