@@ -1,21 +1,21 @@
 ---
-import type { GetStaticPaths } from 'astro'
+import { Image } from 'astro:assets'
+import { render } from 'astro:content'
+import { getCollection } from 'astro:content'
+import BackButton from '@components/BackButton'
 import TagsList from '@components/TagsList.astro'
 import Time from '@components/Time.astro'
 import ArrowLeft from '@icons/ArrowLeft.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { convertToSlug } from '@lib/utils'
-import { Image } from 'astro:assets'
-import { render } from 'astro:content'
-import { getCollection } from 'astro:content'
-import BackButton from '@components/BackButton'
+import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('posts')
 
   return posts.map(article => ({
     params: { slug: convertToSlug(article.data.title) },
-    props: { article },
+    props: { article }
   }))
 }) satisfies GetStaticPaths
 
@@ -25,7 +25,7 @@ const { Content } = await render(article)
 ---
 
 <BaseLayout title={data.title}>
-  <div class='container mx-auto px-4 py-8'>
+  <div class='container mx-auto px-4 py-12'>
     <article class='mx-auto max-w-3xl'>
       <BackButton client:load>
         <ArrowLeft class='size-4' />
@@ -48,7 +48,9 @@ const { Content } = await render(article)
           height={data.image.height}
         />
       </div>
-      <div class='mx-auto prose dark:prose-invert max-w-none'>
+      <div
+        class='prose prose-lg max-w-none prose-invert prose-headings:text-white prose-a:text-pink-400 prose-code:bg-gray-800 prose-code:text-pink-300'
+      >
         <Content />
       </div>
     </article>

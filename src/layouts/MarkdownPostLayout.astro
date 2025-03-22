@@ -1,14 +1,14 @@
 ---
-import type { MarkdownLayoutProps } from 'astro'
-import type { Post } from '@definitions/post'
-import { formatDate } from '@lib/utils'
-import BaseLayout from '@layouts/BaseLayout.astro'
 import TagsList from '@components/TagsList.astro'
+import type { Post } from '@definitions/post'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { formatDate } from '@lib/utils'
+import type { MarkdownLayoutProps } from 'astro'
 
 type Props = MarkdownLayoutProps<Post>
 
 const {
-  frontmatter: { title, pubDate, tags, description, author, image, url },
+  frontmatter: { title, pubDate, tags, description, author, image, url }
 } = Astro.props
 ---
 

@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     Object.values(postsMarkdownFiles).map(fn => fn())
   )
   const uniqueTags = [
-    ...new Set(allBlogs.flatMap(({ frontmatter: { tags } }) => tags)),
+    ...new Set(allBlogs.flatMap(({ frontmatter: { tags } }) => tags))
   ]
 
   return uniqueTags.map(tag => {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
     return {
       params: { tag },
-      props: { posts: filteredBlogs },
+      props: { posts: filteredBlogs }
     }
   })
 }

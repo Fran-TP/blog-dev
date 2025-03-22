@@ -1,15 +1,15 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { convertToSlug, formatDate } from '@lib/utils'
-import TagsList from '@components/TagsList.astro'
 import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import TagsList from '@components/TagsList.astro'
+import { convertToSlug, formatDate } from '@lib/utils'
 
-type Props = {
+interface Props {
   post: CollectionEntry<'posts'>
 }
 
 const {
-  post: { data, slug },
+  post: { data, slug }
 } = Astro.props
 const { author, tags, description, image, pubDate, title } = data
 const titleSlug = convertToSlug(title)

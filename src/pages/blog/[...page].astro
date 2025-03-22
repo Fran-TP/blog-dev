@@ -1,15 +1,15 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import BlogCard from '@components/BlogCard.astro'
-import BaseLayout from '@layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content'
+import BlogCard from '@components/BlogCard.astro'
 import Pagination from '@components/Pagination.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async ({ paginate }) => {
   const post = await getCollection('posts')
 
   return paginate(post, {
-    pageSize: 9,
+    pageSize: 9
   })
 }) satisfies GetStaticPaths
 
