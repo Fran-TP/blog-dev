@@ -1,6 +1,6 @@
 # BlogDev - A blog for developers
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> 🧑‍🚀 **Fran Torres Penadillo**
 
 ## 🧞 Commands
 
