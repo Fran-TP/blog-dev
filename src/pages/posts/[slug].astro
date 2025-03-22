@@ -1,10 +1,14 @@
 ---
+import type { GetStaticPaths } from 'astro'
+import TagsList from '@components/TagsList.astro'
+import Time from '@components/Time.astro'
+import ArrowLeft from '@icons/ArrowLeft.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { convertToSlug } from '@lib/utils'
-import type { GetStaticPaths } from 'astro'
 import { Image } from 'astro:assets'
 import { render } from 'astro:content'
 import { getCollection } from 'astro:content'
+import BackButton from '@components/BackButton'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('posts')
@@ -21,17 +25,32 @@ const { Content } = await render(article)
 ---
 
 <BaseLayout title={data.title}>
-  <div class='container mx-auto max-w-4xl px-4 py-8'>
-    <Image
-      src={data.image.url}
-      alt={data.image.alt}
-      width={data.image.width}
-      height={data.image.height}
-    />
-    <Content />
-    <footer>
-      <p>© {new Date().getFullYear()} My Blog. All rights reserved.</p>
-      <p>Follow us on social media!</p>
-    </footer>
+  <div class='container mx-auto px-4 py-8'>
+    <article class='mx-auto max-w-3xl'>
+      <BackButton client:load>
+        <ArrowLeft class='size-4' />
+        Back to Blog
+      </BackButton>
+      <header class='mb-8 flex flex-col gap-4'>
+        <TagsList tags={data.tags} id='post-tags' />
+        <h1
+          class='mb-4 text-3xl font-bold text-gray-100 sm:text-4xl md:text-5xl'
+        >
+          {data.title}
+        </h1>
+        <Time time={data.pubDate} />
+      </header>
+      <div class='mb-10 rounded-xl overflow-hidden'>
+        <Image
+          src={data.image.url}
+          alt={data.image.alt}
+          width={data.image.width}
+          height={data.image.height}
+        />
+      </div>
+      <div class='mx-auto prose dark:prose-invert max-w-none'>
+        <Content />
+      </div>
+    </article>
   </div>
 </BaseLayout>
