@@ -38,6 +38,8 @@
       "@definitions/*": [
         "src/definitions/*"
       ]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
