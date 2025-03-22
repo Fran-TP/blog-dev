@@ -1,0 +1,20 @@
+---
+import CalendarUp from '@icons/CalendarUp.astro'
+import { formatDate } from '@lib/utils'
+
+type Props = {
+  time: Date
+}
+
+const { time } = Astro.props
+---
+
+<div class='flex items-center gap-2'>
+  <CalendarUp class='size-4.5 text-gray-500 dark:text-gray-400' />
+  <time
+    class='inline-block text-sm leading-6 text-gray-500 dark:text-gray-400'
+    datetime={time.toISOString()}
+  >
+    {formatDate(time.toISOString())}
+  </time>
+</div>
